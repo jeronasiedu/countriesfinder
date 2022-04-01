@@ -36,11 +36,11 @@ const Details = () => {
   return (
     <VStack alignItems="flex-start" px={[3, 5, 7, 10]} spacing="8" w="full">
       <Head>
-        <title>{country} | info</title>
+        <title>Country | info</title>
         <meta name="title" content="Countries Finder" />
         <meta
           name="description"
-          content={`Find all the  information you need about ${searchterm} . It's as simple as that, no google need`}
+          content={`Find all the  information you need about. It's as simple as that, no google need`}
         />
 
         <meta property="og:type" content="website" />
@@ -48,7 +48,7 @@ const Details = () => {
         <meta property="og:title" content="Countries Finder" />
         <meta
           property="og:description"
-          content={`Find all the  information you need about ${searchterm} . It's as simple as that, no google need`}
+          content={`Find all the  information you need about. It's as simple as that, no google need`}
         />
         <meta property="og:image" content={data[0].flag} />
 
@@ -57,7 +57,7 @@ const Details = () => {
         <meta property="twitter:title" content="Countries Finder" />
         <meta
           property="twitter:description"
-          content={`Find all the  information you need about ${searchterm} . It's as simple as that, no google need`}
+          content={`Find all the  information you need about. It's as simple as that, no google need`}
         />
         <meta property="twitter:image" content={data[0].flag} />
       </Head>
