@@ -29,7 +29,7 @@ const Details = () => {
   )
   let currencies = ''
   let languages = ''
-  if (data) {
+  if (data && data.length > 0) {
     currencies = data[0].currencies.map((item) => item.name).join(',')
     languages = data[0].languages.map((item) => item.name).join(',')
   }
