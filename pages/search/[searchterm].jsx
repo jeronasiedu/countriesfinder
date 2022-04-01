@@ -45,7 +45,13 @@ const Search = () => {
   }
 
   return (
-    <VStack alignItems="flex-start" px={[3, 5, 7, 10]} spacing="8" w="full">
+    <VStack
+      alignItems="flex-start"
+      px={[3, 5, 7, 10]}
+      spacing="8"
+      w="full"
+      mb={5}
+    >
       <Head>
         <title>Country info</title>
         <meta name="title" content="Countries Finder" />

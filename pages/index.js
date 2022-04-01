@@ -41,7 +41,7 @@ export default function Home() {
     setFilter(e.target.value)
   }
   return (
-    <Box px={6}>
+    <Box px={6} mb={5}>
       <Head>
         <title>Countries Finder</title>
         <meta name="title" content="Countries Finder" />
