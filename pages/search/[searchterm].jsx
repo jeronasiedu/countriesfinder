@@ -61,7 +61,10 @@ const Search = () => {
           property="og:description"
           content={`Find all the  information you need about. It's as simple as that, no google need`}
         />
-        <meta property="og:image" content={data[0].flag} />
+        <meta
+          property="og:image"
+          content="https://github.com/jeronasiedu/countriesfinder/blob/main/public/screenshot1.png?raw=true"
+        />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://metatags.io/" />
@@ -70,7 +73,10 @@ const Search = () => {
           property="twitter:description"
           content={`Find all the  information you need about. It's as simple as that, no google need`}
         />
-        <meta property="twitter:image" content={data[0].flag} />
+        <meta
+          property="twitter:image"
+          content="https://github.com/jeronasiedu/countriesfinder/blob/main/public/screenshot1.png?raw=true"
+        />
       </Head>
       <Button
         leftIcon={<BsCaretLeftFill />}
