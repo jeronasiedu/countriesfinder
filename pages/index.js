@@ -117,7 +117,7 @@ export default function Home() {
                   shadow="md"
                   bg={cardBg}
                 >
-                  <Box pos="relative" w="full" h="50%">
+                  <Box pos="relative" w="full" h="55%">
                     <Image
                       src={item.flags.svg}
                       alt={item.name.official}
