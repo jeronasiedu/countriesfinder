@@ -50,7 +50,7 @@ const Details = () => {
         />
 
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://metatags.io/" />
+        <meta property="og:url" content="https://countriesfinder.vercel.app" />
         <meta property="og:title" content="Countries Finder" />
         <meta
           property="og:description"
@@ -62,7 +62,10 @@ const Details = () => {
         />
 
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://metatags.io/" />
+        <meta
+          property="twitter:url"
+          content="https://countriesfinder.vercel.app"
+        />
         <meta property="twitter:title" content="Countries Finder" />
         <meta
           property="twitter:description"
