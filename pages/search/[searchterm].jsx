@@ -44,6 +44,29 @@ const Search = () => {
     <VStack alignItems="flex-start" px={[3, 5, 7, 10]} spacing="8" w="full">
       <Head>
         <title>{searchterm} | info</title>
+        <meta name="title" content="Countries Finder" />
+        <meta
+          name="description"
+          content={`Find all the  information you need about ${searchterm} . It's as simple as that, no google need`}
+        />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://metatags.io/" />
+        <meta property="og:title" content="Countries Finder" />
+        <meta
+          property="og:description"
+          content={`Find all the  information you need about ${searchterm} . It's as simple as that, no google need`}
+        />
+        <meta property="og:image" content={data[0].flag} />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://metatags.io/" />
+        <meta property="twitter:title" content="Countries Finder" />
+        <meta
+          property="twitter:description"
+          content={`Find all the  information you need about ${searchterm} . It's as simple as that, no google need`}
+        />
+        <meta property="twitter:image" content={data[0].flag} />
       </Head>
       <Button
         leftIcon={<BsCaretLeftFill />}

@@ -44,6 +44,35 @@ export default function Home() {
     <Box px={6}>
       <Head>
         <title>Countries Finder</title>
+        <meta name="title" content="Countries Finder" />
+        <meta
+          name="description"
+          content="Find all the  information you need about any country. It's as simple as that, no google need"
+        />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://metatags.io/" />
+        <meta property="og:title" content="Countries Finder" />
+        <meta
+          property="og:description"
+          content="Find all the  information you need about any country. It's as simple as that, no google need"
+        />
+        <meta
+          property="og:image"
+          content="https://github.com/jeronasiedu/countriesfinder/blob/main/public/screenshot1.png?raw=true"
+        />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://metatags.io/" />
+        <meta property="twitter:title" content="Countries Finder" />
+        <meta
+          property="twitter:description"
+          content="Find all the  information you need about any country. It's as simple as that, no google need"
+        />
+        <meta
+          property="twitter:image"
+          content="https://github.com/jeronasiedu/countriesfinder/blob/main/public/screenshot1.png?raw=true"
+        />
       </Head>
       <Stack
         direction={['column', 'column', 'row']}
