@@ -22,7 +22,7 @@ const Details = () => {
     fetch(`https://restcountries.com/v2/name/${country}`).then((data) =>
       data.json()
     )
-  let { data, error, loading } = useSWR(`country/${country}`, getCountryInfo)
+  let { data, error, loading } = useSWR([`country`, country], getCountryInfo)
   const badgeBg = useColorModeValue(
     'hsl(0, 0%, 98.0392156862745%)',
     'hsl(207, 26%, 17%)'

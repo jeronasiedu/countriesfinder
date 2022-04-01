@@ -22,7 +22,7 @@ const Search = () => {
     fetch(`https://restcountries.com/v2/name/${searchterm}`).then((data) =>
       data.json()
     )
-  let { data, error, loading } = useSWR(searchterm, getCountryInfo)
+  let { data, error, loading } = useSWR(['search', searchterm], getCountryInfo)
   const badgeBg = useColorModeValue(
     'hsl(0, 0%, 98.0392156862745%)',
     'hsl(207, 26%, 17%)'
