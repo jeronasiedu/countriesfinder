@@ -2,47 +2,40 @@ import {
   Box,
   Heading,
   HStack,
-  Stack,
   Text,
   VStack,
   chakra,
   Button,
   Image,
   useColorModeValue,
+  SimpleGrid,
 } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import useSWR from 'swr'
 import { BsCaretLeftFill } from 'react-icons/bs'
 import Spinner from '../../components/Loader'
+import Link from 'next/link'
 const Search = () => {
   const router = useRouter()
   const { searchterm } = router.query
   const getCountryInfo = () =>
-    fetch(`https://restcountries.com/v2/name/${searchterm}`).then((data) =>
+    fetch(`https://restcountries.com/v3.1/name/${searchterm}`).then((data) =>
       data.json()
     )
-  let { data, error, loading } = useSWR(['search', searchterm], getCountryInfo)
-  const badgeBg = useColorModeValue(
-    'hsl(0, 0%, 98.0392156862745%)',
-    'hsl(207, 26%, 17%)'
-  )
-  let currencies = ''
-  let languages = ''
-  if (data && data.length > 0) {
-    data = data[0]
-  }
-
-  if (data && data.length > 0) {
-    currencies = data[0]?.currencies.map((item) => item.name).join(',')
-    languages = data[0]?.languages.map((item) => item.name).join(',')
-  }
-  if (error) {
-    return <Text>There was an error processing your request</Text>
-  }
+  let { data, error, loading } = useSWR(searchterm, getCountryInfo)
+  const cardBg = useColorModeValue('#fff', ' hsl(207, 26%, 17%)')
   if (loading) {
     return <Spinner />
   }
+  if (error) {
+    return (
+      <Heading size="md" textAlign="center">
+        Make sure you are connected to the internet and try again
+      </Heading>
+    )
+  }
+  console.log(data)
 
   return (
     <VStack
@@ -94,107 +87,66 @@ const Search = () => {
       >
         Back
       </Button>
-      {data && data.length > 0 ? (
-        <Stack
-          direction={['column', 'column', 'row']}
+      {data && (
+        <SimpleGrid
+          minChildWidth={['240px']}
+          spacing={5}
           w="full"
-          spacing={8}
-          maxW="container.xl"
-          alignSelf="center"
+          justifyItems="center"
+          alignItems="center"
         >
-          <Box
-            w={['full', 'full', '50%']}
-            h={['16rem', '18rem', '20rem']}
-            flexShrink="0"
-          >
-            <Image
-              src={data[0].flag}
-              alt={data[0].name}
-              w="full"
-              h="full"
-              objectFit="cover"
-            />
-          </Box>
-          <VStack flex="1" alignItems="flex-start" spacing={5}>
-            <Heading mb={3}>{data[0].name}</Heading>
-            <Stack direction={['column', 'column', 'row']} w="full" spacing={5}>
-              <Box>
-                <HStack>
-                  <Text>Native Name:</Text>
-                  <chakra.span color="gray.500">
-                    {data[0].nativeName}
-                  </chakra.span>
-                </HStack>
-                <HStack>
-                  <Text>Population:</Text>
-                  <chakra.span color="gray.500">
-                    {data[0].population}
-                  </chakra.span>
-                </HStack>
-                <HStack>
-                  <Text>Region:</Text>
-                  <chakra.span color="gray.500">{data[0].region}</chakra.span>
-                </HStack>
-                <HStack>
-                  <Text>Sub Region:</Text>
-                  <chakra.span color="gray.500">
-                    {data[0].subregion}
-                  </chakra.span>
-                </HStack>
-                <HStack>
-                  <Text>Capital:</Text>
-                  <chakra.span color="gray.500">{data[0].capital}</chakra.span>
-                </HStack>
-              </Box>
-              <Box>
-                <HStack>
-                  <Text>Top Level Domain:</Text>
-                  <chakra.span color="gray.500">
-                    {data[0].topLevelDomain.join(',')}
-                  </chakra.span>
-                </HStack>
-                <HStack>
-                  <Text>Calling Code:</Text>
-                  <chakra.span color="gray.500">
-                    {data[0].callingCodes.join(',')}
-                  </chakra.span>
-                </HStack>
-                <HStack>
-                  <Text>Currencies:</Text>
-                  <chakra.span color="gray.500">{currencies}</chakra.span>
-                </HStack>
-                <HStack>
-                  <Text>Languages:</Text>
-                  <chakra.span color="gray.500">{languages}</chakra.span>
-                </HStack>
-              </Box>
-            </Stack>
-            {data[0].borders && (
-              <HStack flexWrap="wrap" gap="2">
-                <Text>Border Countries:</Text>
-                {data[0].borders?.map((item, key) => (
-                  <chakra.span
-                    shadow="sm"
-                    rounded="sm"
-                    px={4}
-                    py={0.5}
-                    bg={badgeBg}
-                    key={key}
-                    fontSize="0.8rem"
-                  >
-                    {item}
-                  </chakra.span>
-                ))}
-              </HStack>
-            )}
-          </VStack>
-        </Stack>
-      ) : data && data.status === 404 ? (
-        <Heading alignSelf="center" textAlign="center">
-          Nothing was found for <Text color="gray.500">{searchterm}</Text>
-        </Heading>
-      ) : (
-        <Spinner />
+          {data?.map((item, idx) => (
+            <Link href={`/${item.name.common}`} key={idx}>
+              <a>
+                <Box
+                  h={['21rem', '20rem']}
+                  rounded="sm"
+                  shadow="md"
+                  bg={cardBg}
+                >
+                  <Box pos="relative" w="full" h="55%">
+                    <Image
+                      src={item.flags.svg}
+                      alt={item.name.official}
+                      w="full"
+                      h="full"
+                      objectFit="cover"
+                    />
+                  </Box>
+                  <VStack p={3} alignItems="flex-start" spacing="0">
+                    <Heading size="md" mb="2">
+                      {item.name.common}
+                    </Heading>
+                    <HStack>
+                      <Text>Population:</Text>
+                      <chakra.span color="gray.500">
+                        {item.population}
+                      </chakra.span>
+                    </HStack>
+                    <HStack>
+                      <Text>Region:</Text>
+                      <chakra.span color="gray.500">{item.region}</chakra.span>
+                    </HStack>
+                    <HStack>
+                      <Text>Sub Region:</Text>
+                      <chakra.span color="gray.500">
+                        {item.subregion}
+                      </chakra.span>
+                    </HStack>
+                    {item.capital && (
+                      <HStack>
+                        <Text>Capital:</Text>
+                        <chakra.span color="gray.500">
+                          {item.capital}
+                        </chakra.span>
+                      </HStack>
+                    )}
+                  </VStack>
+                </Box>
+              </a>
+            </Link>
+          ))}
+        </SimpleGrid>
       )}
     </VStack>
   )

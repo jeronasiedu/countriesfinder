@@ -112,7 +112,7 @@ export default function Home() {
             <Link href={`/${item.name.common}`} key={idx}>
               <a>
                 <Box
-                  h={['20rem', '18rem']}
+                  h={['20rem', '20rem']}
                   rounded="sm"
                   shadow="md"
                   bg={cardBg}
@@ -127,7 +127,7 @@ export default function Home() {
                     />
                   </Box>
                   <VStack p={3} alignItems="flex-start" spacing="0">
-                    <Heading size="md" mb="2">
+                    <Heading size="md" mb="1.5">
                       {item.name.common}
                     </Heading>
                     <HStack>
@@ -139,6 +139,12 @@ export default function Home() {
                     <HStack>
                       <Text>Region:</Text>
                       <chakra.span color="gray.500">{item.region}</chakra.span>
+                    </HStack>
+                    <HStack>
+                      <Text>Sub Region:</Text>
+                      <chakra.span color="gray.500">
+                        {item.subregion}
+                      </chakra.span>
                     </HStack>
                     {item.capital && (
                       <HStack>
@@ -157,7 +163,9 @@ export default function Home() {
       ) : loading ? (
         <Heading textAlign="center">Loading</Heading>
       ) : error ? (
-        <Heading textAlign="center">There was an error</Heading>
+        <Heading textAlign="center" size="md">
+          Check your internet connection and try again
+        </Heading>
       ) : (
         <Spinner />
       )}
