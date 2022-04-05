@@ -87,14 +87,8 @@ const Search = () => {
       >
         Back
       </Button>
-      {data && (
-        <SimpleGrid
-          minChildWidth={['240px']}
-          spacing={5}
-          w="full"
-          justifyItems="center"
-          alignItems="center"
-        >
+      {data ? (
+        <SimpleGrid minChildWidth={['240px']} spacing={5} w="full">
           {data?.map((item, idx) => (
             <Link href={`/${item.name.common}`} key={idx}>
               <a>
@@ -147,6 +141,8 @@ const Search = () => {
             </Link>
           ))}
         </SimpleGrid>
+      ) : (
+        <Spinner />
       )}
     </VStack>
   )
