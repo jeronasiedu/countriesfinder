@@ -13,7 +13,7 @@ import {
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import useSWR from 'swr'
-import { BsCaretLeftFill } from 'react-icons/bs'
+import { BsCaretLeftFill, BsHouse } from 'react-icons/bs'
 import Spinner from '../../components/Loader'
 import Link from 'next/link'
 const Search = () => {
@@ -35,7 +35,6 @@ const Search = () => {
       </Heading>
     )
   }
-  console.log(data)
 
   return (
     <VStack
@@ -89,57 +88,74 @@ const Search = () => {
       </Button>
       {data ? (
         <SimpleGrid minChildWidth={['240px']} spacing={5} w="full">
-          {data?.map((item, idx) => (
-            <Link href={`/${item.name.common}`} key={idx}>
-              <a>
-                <Box
-                  h={['21rem', '20rem']}
-                  rounded="sm"
-                  shadow="md"
-                  bg={cardBg}
-                >
-                  <Box pos="relative" w="full" h="55%">
-                    <Image
-                      src={item.flags.svg}
-                      alt={item.name.official}
-                      w="full"
-                      h="full"
-                      objectFit="cover"
-                    />
-                  </Box>
-                  <VStack p={3} alignItems="flex-start" spacing="0">
-                    <Heading size="md" mb="2">
-                      {item.name.common}
-                    </Heading>
-                    <HStack>
-                      <Text>Population:</Text>
-                      <chakra.span color="gray.500">
-                        {item.population}
-                      </chakra.span>
-                    </HStack>
-                    <HStack>
-                      <Text>Region:</Text>
-                      <chakra.span color="gray.500">{item.region}</chakra.span>
-                    </HStack>
-                    <HStack>
-                      <Text>Sub Region:</Text>
-                      <chakra.span color="gray.500">
-                        {item.subregion}
-                      </chakra.span>
-                    </HStack>
-                    {item.capital && (
+          {data.length > 0 ? (
+            data.map((item, idx) => (
+              <Link href={`/${item.name.common}`} key={idx}>
+                <a>
+                  <Box
+                    h={['21rem', '20rem']}
+                    rounded="sm"
+                    shadow="md"
+                    bg={cardBg}
+                  >
+                    <Box pos="relative" w="full" h="55%">
+                      <Image
+                        src={item.flags.svg}
+                        alt={item.name.official}
+                        w="full"
+                        h="full"
+                        objectFit="cover"
+                      />
+                    </Box>
+                    <VStack p={3} alignItems="flex-start" spacing="0">
+                      <Heading size="md" mb="2">
+                        {item.name.common}
+                      </Heading>
                       <HStack>
-                        <Text>Capital:</Text>
+                        <Text>Population:</Text>
                         <chakra.span color="gray.500">
-                          {item.capital}
+                          {item.population}
                         </chakra.span>
                       </HStack>
-                    )}
-                  </VStack>
-                </Box>
-              </a>
-            </Link>
-          ))}
+                      <HStack>
+                        <Text>Region:</Text>
+                        <chakra.span color="gray.500">
+                          {item.region}
+                        </chakra.span>
+                      </HStack>
+                      <HStack>
+                        <Text>Sub Region:</Text>
+                        <chakra.span color="gray.500">
+                          {item.subregion}
+                        </chakra.span>
+                      </HStack>
+                      {item.capital && (
+                        <HStack>
+                          <Text>Capital:</Text>
+                          <chakra.span color="gray.500">
+                            {item.capital}
+                          </chakra.span>
+                        </HStack>
+                      )}
+                    </VStack>
+                  </Box>
+                </a>
+              </Link>
+            ))
+          ) : (
+            <>
+              <VStack>
+                <Heading>Sorry, we couldn&apos;t find your search</Heading>
+                <Button
+                  leftIcon={<BsHouse />}
+                  variant="outline"
+                  onClick={() => router.push('/')}
+                >
+                  Home
+                </Button>
+              </VStack>
+            </>
+          )}
         </SimpleGrid>
       ) : (
         <Spinner />
