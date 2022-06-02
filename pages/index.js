@@ -163,7 +163,7 @@ export default function Home() {
       ) : loading ? (
         <Heading textAlign="center">Loading</Heading>
       ) : error ? (
-        <Heading textAlign="center" size="md">
+        <Heading textAlign="center" size="md" fontWeight={400}>
           Check your internet connection and try again
         </Heading>
       ) : (

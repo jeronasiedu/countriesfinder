@@ -147,7 +147,7 @@ const Search = () => {
           ) : (
             <>
               <VStack spacing={5}>
-                <Heading size="md" textAlign="center">
+                <Heading size="md" textAlign="center" fontWeight={400}>
                   Sorry, we couldn&apos;t find your search
                 </Heading>
                 <Button
