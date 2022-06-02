@@ -79,13 +79,15 @@ const Search = () => {
           content="https://github.com/jeronasiedu/countriesfinder/blob/main/public/screenshot1.png?raw=true"
         />
       </Head>
-      <Button
-        leftIcon={<BsCaretLeftFill />}
-        variant="outline"
-        onClick={() => router.push('/')}
-      >
-        Back
-      </Button>
+      {data && data.length > 0 && (
+        <Button
+          leftIcon={<BsCaretLeftFill />}
+          variant="outline"
+          onClick={() => router.push('/')}
+        >
+          Back
+        </Button>
+      )}
       {data ? (
         <SimpleGrid minChildWidth={['240px']} spacing={5} w="full">
           {data.length > 0 ? (
