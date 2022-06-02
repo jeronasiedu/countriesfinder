@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <ChakraProvider theme={theme}>
       <Layout>
-        <NextNProgress height={4} />
+        <NextNProgress />
         <Component {...pageProps} />
       </Layout>
     </ChakraProvider>
