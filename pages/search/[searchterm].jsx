@@ -144,8 +144,10 @@ const Search = () => {
             ))
           ) : (
             <>
-              <VStack>
-                <Heading>Sorry, we couldn&apos;t find your search</Heading>
+              <VStack spacing={5}>
+                <Heading size="md" textAlign="center">
+                  Sorry, we couldn&apos;t find your search
+                </Heading>
                 <Button
                   leftIcon={<BsHouse />}
                   variant="outline"
